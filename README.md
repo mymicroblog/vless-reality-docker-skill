@@ -20,6 +20,7 @@ A reusable Antigravity skill and Docker Compose template for deploying VLESS Rea
 .
 ├── README.md                  # Bilingual readme and overview
 ├── SKILL.md                   # Antigravity agent skill instructions
+├── deploy.sh                  # One-click deployment script
 ├── docker-compose.template.yml # Docker compose template for Xray
 ├── config.template.json       # Xray core config template
 └── docs/
@@ -28,6 +29,13 @@ A reusable Antigravity skill and Docker Compose template for deploying VLESS Rea
 
 ### Quick Start Deployment
 
+#### Option 1: One-Click Script (Recommended)
+Run the following curl command directly on your Ubuntu/CentOS VPS to install and configure everything automatically:
+```bash
+curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
+```
+
+#### Option 2: Manual Installation
 1. **Clone and Prepare**:
    Clone this repository, copy files to your VPS, and rename the templates:
    ```bash
@@ -77,6 +85,7 @@ A reusable Antigravity skill and Docker Compose template for deploying VLESS Rea
 .
 ├── README.md                  # 中英文双语 README 概览
 ├── SKILL.md                   # Antigravity 智能体技能指令
+├── deploy.sh                  # 一键自动化部署脚本
 ├── docker-compose.template.yml # Xray 的 Docker compose 部署模板
 ├── config.template.json       # Xray 核心配置文件模板
 └── docs/
@@ -85,6 +94,13 @@ A reusable Antigravity skill and Docker Compose template for deploying VLESS Rea
 
 ### 快速部署步骤
 
+#### 方法一：一键脚本部署（推荐）
+在您的 Ubuntu/CentOS VPS 上直接运行以下 curl 命令即可自动完成 Docker 安装、密钥生成与服务运行：
+```bash
+curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
+```
+
+#### 方法二：手动安装
 1. **克隆与准备**：
    将代码复制到 VPS，并将模板文件重命名：
    ```bash
