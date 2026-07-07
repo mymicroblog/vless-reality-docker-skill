@@ -12,6 +12,13 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;36m'
 NC='\033[0m' # No Color
 
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then
+    echo -e "${RED}[!] Please run this script as root.${NC}"
+    echo -e "${YELLOW}Hint: Run 'sudo -i' first to switch to root, then run the script again.${NC}"
+    exit 1
+fi
+
 echo -e "${BLUE}===================================================${NC}"
 echo -e "${BLUE}      VLESS Reality One-Click Deploy Script        ${NC}"
 echo -e "${BLUE}===================================================${NC}"

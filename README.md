@@ -29,43 +29,24 @@ A reusable Antigravity skill and Docker Compose template for deploying VLESS Rea
 
 ### Quick Start Deployment
 
-#### Option 1: One-Click Script (Recommended)
-Run the following curl command directly on your Ubuntu/CentOS VPS to install and configure everything automatically:
-```bash
-curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
-```
+#### Method 1: Agent-Led Deployment (via Skill)
+If you are using an AI coding assistant (like Antigravity) that you trust, you can delegate the entire installation to the agent:
+1. Provide the agent with your VPS credentials (IP, username, SSH private key or password).
+2. Instruct the agent to read and follow the deployment workflow specified in [SKILL.md](SKILL.md).
+3. The agent will automatically connect, inspect configurations, generate keys, install Xray, and return your client connection links.
 
-#### Option 2: Manual Installation
-1. **Clone and Prepare**:
-   Clone this repository, copy files to your VPS, and rename the templates:
+#### Method 2: One-Click Shell Script Deployment (via Shell)
+If you prefer to run the installation yourself directly on the host:
+1. Log in to your VPS via SSH.
+2. Switch to the root user first (mandatory step):
    ```bash
-   cp docker-compose.template.yml docker-compose.yml
-   cp config.template.json config.json
+   sudo -i
    ```
-
-2. **Generate Keys**:
-   Generate a client UUID and run the following command on the server to get Xray Reality keypair:
+3. Run the one-click deployment script:
    ```bash
-   docker run --rm teddysun/xray:latest xray x25519
+   curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
    ```
-
-3. **Configure**:
-   Edit `config.json` and replace the placeholders:
-   - `<PORT>`: The port to listen on (e.g. `2053`).
-   - `<UUID>`: The generated UUID.
-   - `<FALLBACK_DEST>`: The fallback server address (e.g. `127.0.0.1:443` pointing to local Nginx).
-   - `<YOUR_DOMAIN>`: Your domain served by the web server (used as SNI).
-   - `<PRIVATE_KEY>`: The generated Xray Private Key.
-   - `<SHORT_ID>`: A random 8-byte hexadecimal string.
-
-4. **Start Service**:
-   Start the Xray container in the background:
-   ```bash
-   docker compose up -d
-   ```
-
-5. **Client Configuration**:
-   Refer to [docs/client_guide.md](docs/client_guide.md) to set up Shadowrocket or Clash Verge.
+4. Configure your client using the links printed in the terminal or refer to [docs/client_guide.md](docs/client_guide.md).
 
 ---
 
@@ -94,40 +75,21 @@ curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-sk
 
 ### 快速部署步骤
 
-#### 方法一：一键脚本部署（推荐）
-在您的 Ubuntu/CentOS VPS 上直接运行以下 curl 命令即可自动完成 Docker 安装、密钥生成与服务运行：
-```bash
-curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
-```
+#### 方式一：智能体托管一键部署（通过 Skill）
+如果您正在使用信任的 AI 智能体助理（如 Antigravity），可以直接将服务器连接凭证交给智能体，实现全自动部署：
+1. 将您的 VPS 连接信息（IP、用户名、SSH 私钥或密码）提供给智能体。
+2. 指示智能体阅读并执行本项目中的 [SKILL.md](SKILL.md) 技能文档。
+3. 智能体会自动完成端口排查、密钥生成、容器安装，并最终为您输出客户端连接二维码和配置节点。
 
-#### 方法二：手动安装
-1. **克隆与准备**：
-   将代码复制到 VPS，并将模板文件重命名：
+#### 方式二：VPS 本地一键脚本部署（通过 Shell）
+如果您希望亲自登录服务器进行快速部署：
+1. 通过 SSH 登录您的 VPS 服务器。
+2. 首先**切换到 root 用户**（必须步骤）：
    ```bash
-   cp docker-compose.template.yml docker-compose.yml
-   cp config.template.json config.json
+   sudo -i
    ```
-
-2. **生成密钥**：
-   准备一个客户端 UUID，并在服务器上运行以下命令以获取 Xray Reality 密钥对：
+3. 拷贝并运行以下一键部署脚本（该脚本在启动时会自动进行 root 权限校验）：
    ```bash
-   docker run --rm teddysun/xray:latest xray x25519
+   curl -fsSL https://raw.githubusercontent.com/mymicroblog/vless-reality-docker-skill/main/deploy.sh | bash
    ```
-
-3. **配置参数**：
-   修改并编辑 `config.json`，替换其中的占位符：
-   - `<PORT>`：监听的自定义端口（例如 `2053`）。
-   - `<UUID>`：步骤 2 生成的 UUID。
-   - `<FALLBACK_DEST>`：探测回落目标（例如 `127.0.0.1:443` 指向本地 Nginx）。
-   - `<YOUR_DOMAIN>`：Web 服务器所服务的域名（用作伪装 SNI）。
-   - `<PRIVATE_KEY>`：步骤 2 生成的 Xray 私钥 (PrivateKey)。
-   - `<SHORT_ID>`：一个随机的 8 字节十六进制短 ID。
-
-4. **启动服务**：
-   在后台启动 Xray 容器：
-   ```bash
-   docker compose up -d
-   ```
-
-5. **配置客户端**：
-   参考 [docs/client_guide.md](docs/client_guide.md) 配置您的 Shadowrocket 或 Clash Verge 客户端。
+4. 根据终端输出的链接配置客户端，或者参考 [docs/client_guide.md](docs/client_guide.md)。
