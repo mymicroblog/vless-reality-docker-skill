@@ -1,0 +1,50 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": <PORT>,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "<UUID>",
+            "flow": ""
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "<FALLBACK_DEST>",
+          "xver": 0,
+          "serverNames": [
+            "<YOUR_DOMAIN>",
+            "<ANOTHER_DOMAIN>"
+          ],
+          "privateKey": "<PRIVATE_KEY>",
+          "minClientVer": "",
+          "maxClientVer": "",
+          "maxTimeDiff": 0,
+          "shortIds": [
+            "<SHORT_ID>"
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ]
+}

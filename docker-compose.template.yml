@@ -1,0 +1,13 @@
+services:
+  xray:
+    image: teddysun/xray:latest
+    container_name: xray
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./config:/etc/xray
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
